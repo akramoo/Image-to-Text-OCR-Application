@@ -88,8 +88,4 @@ The Image-to-Text OCR application is designed to convert images containing text 
 
 - Samir Akram OUNIS (@akramoo)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
 ---
