@@ -16,6 +16,7 @@ The Image-to-Text OCR application is designed to convert images containing text 
 
 - **Frontend:**
   - React.js
+  - TailwindCSS
   - Tesseract.js
   - HTML5 & CSS3
 
@@ -25,9 +26,6 @@ The Image-to-Text OCR application is designed to convert images containing text 
   - Multer
   - Mongoose
   - MongoDB
-
-- **Deployment:**
-  - Heroku or AWS (Amazon Web Services)
 
 ## Installation and Setup
 
