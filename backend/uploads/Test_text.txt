@@ -1,0 +1,11 @@
+Edge Detection: Focuses on identifying object edges by
+
+classifying certain pixels as "edge pixels."
+
+Popular algorithms:
+
+o Canny Edge Detection: Uses filters, gradient calculation,
+non-max suppression, and thresholding.
+
+e Sobel Edge Detection: Uses Sobel operator for vertical
+and horizontal convolutions to calculate gradients.
