@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import Tesseract from 'tesseract.js';
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import FileUpload from '../components/fileUpload';
+import LanguageSelector from '../components/languageSelector';
+import LoadingSpinner from '../components/loadingSpinner';
+import TextOutput from '../components/textOutput';
+import ToastNotification from '../components/toastNotification';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -87,47 +92,17 @@ const App = () => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <ToastContainer position="top-center" autoClose={3000} />
+      <ToastNotification />
       <div className="text-center max-w-lg w-full p-4 bg-white rounded shadow">
-        <div
-          className="upload-section border-dashed border-4 border-gray-200 p-4 mb-4"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="hidden"
-            id="fileInput"
-          />
-          <label htmlFor="fileInput" className="cursor-pointer text-blue-500">
-            {image ? 'Change Image' : 'Upload or Drag & Drop Image'}
-          </label>
-          {image && (
-            <div className="preview-container mt-4">
-              <img src={image} alt="Preview" className="max-w-full h-auto" />
-            </div>
-          )}
-        </div>
-        <div className="mb-4">
-          <label htmlFor="language" className="block mb-2">Select Language:</label>
-          <select
-            id="language"
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="form-select"
-          >
-            <option value="eng">English</option>
-            <option value="spa">Spanish</option>
-            <option value="fra">French</option>
-            <option value="deu">German</option>
-            {/* Add more languages as needed */}
-          </select>
-        </div>
+        <FileUpload
+          image={image}
+          handleFileChange={handleFileChange}
+          handleDrop={handleDrop}
+          handleDragOver={handleDragOver}
+        />
+        <LanguageSelector language={language} setLanguage={setLanguage} />
         {isLoading ? (
-          <div className="flex justify-center items-center">
-            <AiOutlineLoading3Quarters className="animate-spin text-4xl text-blue-500" />
-          </div>
+          <LoadingSpinner />
         ) : (
           <>
             <button
@@ -144,14 +119,7 @@ const App = () => {
             >
               Clear
             </button>
-            {text && (
-              <button
-                onClick={saveToFile}
-                className="bg-green-500 text-white px-4 py-2 rounded w-full"
-              >
-                Save to File
-              </button>
-            )}
+            <TextOutput text={text} saveToFile={saveToFile} />
           </>
         )}
       </div>
